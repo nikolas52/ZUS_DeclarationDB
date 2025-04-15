@@ -1,4 +1,4 @@
-# 📊 ZUS_Pustelnik Database
+# 📊 ZUS Declaration Database
 
 A Microsoft SQL Server–based system for managing companies, employees, bank accounts, and ZUS declarations, featuring views, triggers, and stored procedures for robust data operations and validation.
 
@@ -35,7 +35,7 @@ All logic is encapsulated within a single SQL script, enabling seamless setup an
     
 -   **Konto_Bankowe** – Bank account identifiers and metadata
     
--   **Deklaracje_ZUS** – Main table for ZUS declarations with financial data
+-   **Deklaracje_** – Main table for  declarations with financial data
     
 -   **Status_Deklaracji** – Declaration status tracking
     
@@ -93,7 +93,7 @@ Validation rules on insert/update:
 
 Option 1 – **Clone via Git**:
 ```bash
-git clone https://github.com/your-username/ZUS_Pustelnik.git 
+git clone https://github.com/nikolas52/ZUS_Pustelnik.git 
 cd ZUS_Pustelnik` 
 ```
 Option 2 – **Download ZIP**:
