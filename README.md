@@ -1,8 +1,8 @@
-# ZUS_Pustelnik Database
+# ZUS Database
 
 ## 📘 Overview
 
-The **ZUS_Pustelnik** database is designed to manage information related to employees, companies, bank accounts, and ZUS (Polish Social Insurance Institution) declarations. It includes **tables**, **views**, **stored procedures**, and **triggers** to ensure data integrity and facilitate common operations.
+The **ZUS** database is designed to manage information related to employees, companies, bank accounts, and ZUS (Polish Social Insurance Institution) declarations. It includes **tables**, **views**, **stored procedures**, and **triggers** to ensure data integrity and facilitate common operations.
 
 ---
 
