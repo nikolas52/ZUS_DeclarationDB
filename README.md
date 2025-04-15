@@ -1,4 +1,4 @@
-# ZUS Database
+# ZUS Declaration Database
 
 ## 📘 Overview
 
