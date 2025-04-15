@@ -80,7 +80,7 @@ Triggers enforce data validation rules, including:
 ## ⚙️ Setup Instructions
 
 ### 1. Create Database
-Run the SQL script to create the `ZUS_Pustelnik` database.  
+Run the SQL script to create the `ZUS` database.  
 > 📌 Ensure the file paths for `.mdf` and `.ldf` are valid on your system.
 
 ### 2. Create Tables and Relationships
