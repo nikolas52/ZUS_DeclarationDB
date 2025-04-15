@@ -1,128 +1,179 @@
-# ZUS Declaration Database
+# 📊 ZUS_Pustelnik Database
 
-## 📘 Overview
+A Microsoft SQL Server–based system for managing companies, employees, bank accounts, and ZUS declarations, featuring views, triggers, and stored procedures for robust data operations and validation.
 
-The **ZUS** database is designed to manage information related to employees, companies, bank accounts, and ZUS (Polish Social Insurance Institution) declarations. It includes **tables**, **views**, **stored procedures**, and **triggers** to ensure data integrity and facilitate common operations.
+----------
 
----
+## 📋 Project Overview
 
-## 🧱 Database Structure
+The `ZUS_Pustelnik` database is a comprehensive solution for handling:
 
-### 📂 Tables
+-   Company and employee records
+    
+-   ZUS declaration lifecycle
+    
+-   Bank account and document metadata
+    
+-   Integrated data validation through triggers
+    
+-   Predefined views and stored procedures for rapid access
+    
 
-- **Uzytkownicy (Users)**  
-  Stores user credentials.  
-  Columns: `ID_Uzytkownika`, `Nazwa`, `Haslo`
+All logic is encapsulated within a single SQL script, enabling seamless setup and usage.
 
-- **Pracownicy (Employees)**  
-  Stores employee details.  
-  Columns: `ID_pracownika`, `ID_Uzytkownika`, `ID_przedsiebiorstwa`, `ID_konto_bankowe`, `ID_deklaracjiZUS`, `Imie`, `Nazwisko`, `Rola`, `Email`, `Telefon`
+----------
 
-- **Przedsiebiorstwo (Companies)**  
-  Stores company information.  
-  Columns: `ID_przedsiebiorstwa`, `Imię_Własciciela`, `Nazwisko_Właściciela`, `Nazwa_firmy`, `NIP`, `Adres`, `Email`
+## 🗂️ Database Structure
 
-- **Konto_Bankowe (Bank Accounts)**  
-  Stores bank account details.  
-  Columns: `ID_konto_bankowe`, `Numer_konta`, `Nazwa_Banku`, `Numer_rachunku`
+### 🧱 Tables
 
-- **Deklaracje_ZUS (ZUS Declarations)**  
-  Stores ZUS declaration data.  
-  Columns: `ID_deklaracjiZUS`, `ID_status_deklaracji`, `ID_historia_deklaracji`, `ID_dokumenty_ZUS`, `Numer_deklaracji`, `Data_złożenia`, `Kwota_emerytalna`, `Kwota_zdrowotna`, `Kwota_chorobowa`, `Kwota_wypadkowa`
-
-- **Status_Deklaracji (Declaration Status)**  
-  Tracks declaration status changes.  
-  Columns: `ID_status_deklaracji`, `Data_zmiany_statusu`
-
-- **Historia_deklaracji (Declaration History)**  
-  Logs historical declaration data.  
-  Columns: `ID_historia_deklaracji`, `Kwota_emerytalna`, `Kwota_zdrowotna`, `Kwota_chorobowa`, `Kwota_wypadkowa`, `Data_modyfikacji`
-
-- **Dokumenty_ZUS (ZUS Documents)**  
-  Stores document metadata.  
-  Columns: `ID_dokumenty_ZUS`, `Nazwa`, `Ścieżka`
-
----
+-   **Uzytkownicy** – User credentials (`ID_Uzytkownika`, `Nazwa`, `Haslo`)
+    
+-   **Pracownicy** – Employee details and roles
+    
+-   **Przedsiebiorstwo** – Company profiles with NIP, address, and contact info
+    
+-   **Konto_Bankowe** – Bank account identifiers and metadata
+    
+-   **Deklaracje_ZUS** – Main table for ZUS declarations with financial data
+    
+-   **Status_Deklaracji** – Declaration status tracking
+    
+-   **Historia_deklaracji** – Historical data log per declaration
+    
+-   **Dokumenty_ZUS** – Metadata for document attachments
+    
 
 ### 👁️ Views
 
-- `vw_PracownicyInfo`: Combines employee, user, company, and bank account details  
-- `vw_PrzedsiebiorstwoDeklaracje`: Links companies with their ZUS declarations  
-- `vw_DeklaracjeZUSInfo`: Provides detailed ZUS declaration information, including history and status  
-- `vw_DokumentyZUS`: Lists ZUS document details  
-
----
+-   `vw_PracownicyInfo` – Employee with account, user, and company details
+    
+-   `vw_PrzedsiebiorstwoDeklaracje` – Company + ZUS declaration overview
+    
+-   `vw_DeklaracjeZUSInfo` – Complete declaration data (status + history)
+    
+-   `vw_DokumentyZUS` – Document listing and metadata
+    
 
 ### ⚙️ Stored Procedures
 
-- `AddUzytkownik`: Adds a new user  
-- `AddPracownik`: Adds a new employee  
-- `DeletePracownik`: Deletes an employee by ID  
-- `AddPrzedsiebiorstwo`: Adds a new company  
-- `DeletePrzedsiebiorstwo`: Deletes a company by ID  
+-   `AddUzytkownik` – Add user
+    
+-   `AddPracownik` – Add employee
+    
+-   `DeletePracownik` – Remove employee
+    
+-   `AddPrzedsiebiorstwo` – Register company
+    
+-   `DeletePrzedsiebiorstwo` – Remove company
+    
 
----
+### 🚨 Triggers
 
-### 🧪 Triggers
+Validation rules on insert/update:
 
-Triggers enforce data validation rules, including:
+-   Capitalized names, letters only
+    
+-   Proper email and phone number formatting
+    
+-   NIP must have exactly 10 digits
+    
+-   Postal code in format `XX-XXX`
+    
+-   Positive declaration amounts only
+    
+-   Valid account numbers and document naming enforced
+    
 
-- Names must start with capital letters and contain only letters  
-- Valid email formats  
-- Phone numbers must be 9 digits  
-- NIP must contain exactly 10 digits  
-- Address format: _Country, City, Street, Postal Code XX-XXX_  
-- Declaration amounts must be positive integers  
-- Valid bank account numbers and document names  
+----------
 
----
+## 🧩 Installation & Setup
 
-## ⚙️ Setup Instructions
+### 🔻 Download the Project
 
-### 1. Create Database
-Run the SQL script to create the `ZUS` database.  
-> 📌 Ensure the file paths for `.mdf` and `.ldf` are valid on your system.
+Option 1 – **Clone via Git**:
+```bash
+git clone https://github.com/your-username/ZUS_Pustelnik.git 
+cd ZUS_Pustelnik` 
+```
+Option 2 – **Download ZIP**:
 
-### 2. Create Tables and Relationships
-Execute the `CREATE TABLE` and `ALTER TABLE` statements to set up tables and foreign keys.
+-   Go to the repository page on GitHub
+    
+-   Click **Code > Download ZIP**
+    
+-   Extract to your local drive
+    
 
-### 3. Create Views, Procedures, and Triggers
-Run the appropriate SQL code blocks for views, procedures, and triggers.
+----------
 
-### 4. Insert Sample Data
-Use the provided `INSERT INTO` statements to populate tables for testing.
+### 🛠️ Execute the SQL Script
 
----
+1.  Open `ZUS_Pustelnik.sql` in **SQL Server Management Studio (SSMS)**
+    
+2.  Ensure your SQL Server instance is running
+    
+3.  Update file paths in the `CREATE DATABASE` section:
+    
+   ```sql
+FILENAME =  'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\ZUS_Pustelnik.mdf' 
+FILENAME =  'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\ZUS_Pustelnik_log.ldf'
+```
+4.  Execute the full script (`Ctrl + F5`) to:
+    
+    -   Drop existing DB (if exists)
+        
+    -   Create `ZUS_Pustelnik` database
+        
+    -   Create schema, relationships, views, triggers
+        
+    -   Insert sample data
+        
+5.  Refresh your **Databases** list in SSMS
+    
+6.  Run test queries:
+    
+```sql
+SELECT  *  FROM vw_PracownicyInfo; EXEC AddUzytkownik @ID_Uzytkownika  =  99, @Nazwa  =  'test', @Haslo  =  'pass123';
+```
+    
 
-## 🚀 Usage
+----------
 
-### Querying Data
-Use views like `vw_PracownicyInfo` and `vw_PrzedsiebiorstwoDeklaracje` for common queries.
+## 🚀 Usage Examples
 
-### Managing Data
-Use stored procedures (e.g., `AddUzytkownik`, `AddPracownik`) for secure data manipulation.
+```sql
 
-### Data Validation
-Triggers automatically enforce rules during `INSERT` and `UPDATE` operations.
+`-- Add a new user  EXEC AddUzytkownik @ID_Uzytkownika  =  10, @Nazwa  =  'admin', @Haslo  =  'securepass123'; -- Insert a company  EXEC AddPrzedsiebiorstwo @ID_przedsiebiorstwa  =  3, @Imię_Własciciela =  'Jan', @Nazwisko_Właściciela =  'Kowalski', @Nazwa_firmy  =  'Firma Z', @NIP  =  '1234567890', @Adres  =  'Polska, Warszawa, ul. Długa 12, 00-001', @Email  =  'kontakt@firmaZ.pl';` 
+```
+----------
 
----
+## 🛠️ Requirements
 
-## 🖥️ Requirements
+-   Microsoft SQL Server 2019+
+    
+-   SSMS or compatible SQL client
+    
+-   Permissions to create/modify databases
+    
+-   Disk space: ~10MB data, 5MB log (initial)
+    
 
-- Microsoft SQL Server (e.g., SQL Server Express 2022 or later)  
-- Sufficient disk space (initial: 10MB, max: 200MB for data, 100MB for log)  
-- Permissions to create and manage databases  
+----------
 
----
+## ⚠️ Notes
 
-## 📝 Notes
+-   File growth: fixed 5MB increments
+    
+-   All triggers validate data on `INSERT`/`UPDATE`
+    
+-   Transactions will be **rolled back** if data fails validation
+    
+-   Included sample data is for testing only
+    
 
-- The database uses **fixed file growth of 5MB** for efficient storage management  
-- Triggers may **rollback transactions** if validation rules fail — ensure data conforms  
-- Sample data is intended for testing; replace it with real data in production
-
----
+----------
 
 ## 📄 License
 
-This project is licensed under the **MIT License**.
+Licensed under the MIT License.
